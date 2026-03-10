@@ -52,7 +52,7 @@ const Funcionarios = ({ game }) => {
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
                   <span className="text-gray-400">Custo:</span>
-                  <span className="text-yellow-400 font-bold">{formatMoney(custoAtual)}</span>
+                  <span className="text-yellow-400 font-bold">R$ {formatMoney(custoAtual)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-400">Bônus:</span>

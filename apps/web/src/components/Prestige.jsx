@@ -35,7 +35,7 @@ const Prestige = ({ game }) => {
             </div>
             <div className="flex justify-between">
               <span className="text-gray-400">Dinheiro Atual:</span>
-              <span className="text-green-400 font-bold">{formatMoney(game.dinheiro)}</span>
+              <span className="text-green-400 font-bold">R$ {formatMoney(game.dinheiro)}</span>
             </div>
           </div>
         </div>
@@ -45,7 +45,7 @@ const Prestige = ({ game }) => {
           <div className="space-y-3">
             <div className="flex justify-between">
               <span className="text-gray-400">Requisito:</span>
-              <span className="text-yellow-400 font-bold">{formatMoney(requisito)}</span>
+              <span className="text-yellow-400 font-bold">R$ {formatMoney(requisito)}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-400">Novo Nível:</span>
@@ -95,7 +95,7 @@ const Prestige = ({ game }) => {
             disabled={!podePrestigiar}
             className="w-full bg-purple-600 hover:bg-purple-700 text-lg py-6"
           >
-            {podePrestigiar ? '🌟 Fazer Prestige' : `Requisito: ${formatMoney(requisito)}`}
+            {podePrestigiar ? '🌟 Fazer Prestige' : `Requisito: R$ ${formatMoney(requisito)}`}
           </Button>
         </AlertDialogTrigger>
         <AlertDialogContent className="bg-gray-800 border-gray-700 text-white">
