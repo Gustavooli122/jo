@@ -40,7 +40,7 @@ const RendaPassiva = ({ game }) => {
           <TrendingUp className="w-8 h-8 text-cyan-400" />
           <div>
             <h3 className="text-lg font-bold text-white">Renda Passiva Total</h3>
-            <p className="text-2xl font-bold text-cyan-400">{formatMoney(calcularRendaTotal())}/5s</p>
+            <p className="text-2xl font-bold text-cyan-400">R$ {formatMoney(calcularRendaTotal())}/5s</p>
           </div>
         </div>
       </div>
@@ -68,11 +68,11 @@ const RendaPassiva = ({ game }) => {
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
                   <span className="text-gray-400">Custo:</span>
-                  <span className="text-yellow-400 font-bold">{formatMoney(custoAtual)}</span>
+                  <span className="text-yellow-400 font-bold">R$ {formatMoney(custoAtual)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-400">Renda:</span>
-                  <span className="text-green-400 font-bold">{formatMoney(gerador.renda)}/5s</span>
+                  <span className="text-green-400 font-bold">R$ {formatMoney(gerador.renda)}/5s</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-400">Possui:</span>
@@ -81,7 +81,7 @@ const RendaPassiva = ({ game }) => {
                 {quantidade > 0 && (
                   <div className="flex justify-between">
                     <span className="text-gray-400">Renda total:</span>
-                    <span className="text-green-400 font-bold">{formatMoney(rendaAtual)}/5s</span>
+                    <span className="text-green-400 font-bold">R$ {formatMoney(rendaAtual)}/5s</span>
                   </div>
                 )}
                 <div className="flex justify-between">

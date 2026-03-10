@@ -55,7 +55,7 @@ const Loja = ({ game }) => {
             >
               <h3 className="font-bold text-white mb-2">{produto.nome}</h3>
               <div className="space-y-2">
-                <div className="text-green-400 font-bold">{formatMoney(precoAjustado)}</div>
+                <div className="text-green-400 font-bold">R$ {formatMoney(precoAjustado)}</div>
                 {quantidadeInventario > 0 && (
                   <div className="text-sm text-gray-400">Possui: {quantidadeInventario}</div>
                 )}

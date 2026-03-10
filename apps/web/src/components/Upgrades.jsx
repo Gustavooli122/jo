@@ -54,7 +54,7 @@ const Upgrades = ({ game }) => {
                 {!possuido && (
                   <div className="flex justify-between">
                     <span className="text-gray-400">Custo:</span>
-                    <span className="text-yellow-400 font-bold">{formatMoney(upgrade.custo)}</span>
+                    <span className="text-yellow-400 font-bold">R$ {formatMoney(upgrade.custo)}</span>
                   </div>
                 )}
               </div>

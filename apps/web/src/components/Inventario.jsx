@@ -51,7 +51,7 @@ const Inventario = ({ game }) => {
               <h3 className="font-bold text-white mb-2">{produto.nome}</h3>
               <div className="space-y-2">
                 <div className="text-sm text-gray-400">Quantidade: {produto.quantidade}</div>
-                <div className="text-sm text-gray-400">Valor de venda: {formatMoney(produto.preco * 0.5)}</div>
+                <div className="text-sm text-gray-400">Valor de venda: R$ {formatMoney(produto.preco * 0.5)}</div>
                 
                 <div className="flex gap-2">
                   <Dialog>
@@ -89,11 +89,11 @@ const Inventario = ({ game }) => {
                         <div className="space-y-2 text-sm">
                           <div className="flex justify-between">
                             <span className="text-gray-400">Valor unitário:</span>
-                            <span className="text-green-400">{formatMoney(produto.preco * 0.5)}</span>
+                            <span className="text-green-400"> R$ {formatMoney(produto.preco * 0.5)}</span>
                           </div>
                           <div className="flex justify-between font-bold">
                             <span className="text-gray-400">Total:</span>
-                            <span className="text-green-400">{formatMoney(produto.preco * 0.5 * quantidade)}</span>
+                            <span className="text-green-400">R$ {formatMoney(produto.preco * 0.5 * quantidade)}</span>
                           </div>
                         </div>
                         <Button onClick={handleSell} className="w-full">

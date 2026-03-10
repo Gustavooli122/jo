@@ -40,7 +40,7 @@ const TopBar = ({ game }) => {
             <TrendingUp className="w-6 h-6 text-green-400" />
             <div>
               <div className="text-xs text-gray-400">Dinheiro</div>
-              <div className="text-xl font-bold text-green-400">{formatMoney(dinheiro)}</div>
+              <div className="text-xl font-bold text-green-400">R$ {formatMoney(dinheiro)}</div>
             </div>
           </motion.div>
 

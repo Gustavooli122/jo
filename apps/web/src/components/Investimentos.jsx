@@ -35,7 +35,7 @@ const Investimentos = ({ game }) => {
           <BarChart3 className="w-8 h-8 text-indigo-400" />
           <div>
             <h3 className="text-lg font-bold text-white">Valor do Portfólio</h3>
-            <p className="text-2xl font-bold text-indigo-400">{formatMoney(calcularValorPortfolio())}</p>
+            <p className="text-2xl font-bold text-indigo-400">R$ {formatMoney(calcularValorPortfolio())}</p>
           </div>
         </div>
       </div>
@@ -58,7 +58,7 @@ const Investimentos = ({ game }) => {
               <div className="space-y-2 text-sm mb-4">
                 <div className="flex justify-between items-center">
                   <span className="text-gray-400">Preço atual:</span>
-                  <span className="text-white font-bold">{formatMoney(precoAtual)}</span>
+                  <span className="text-white font-bold">R$ {formatMoney(precoAtual)}</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-gray-400">Variação:</span>
@@ -81,12 +81,12 @@ const Investimentos = ({ game }) => {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-400">Preço médio:</span>
-                      <span className="text-white">{formatMoney(investimento.precoMedio)}</span>
+                      <span className="text-white">R$ {formatMoney(investimento.precoMedio)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-400">Lucro/Prejuízo:</span>
                       <span className={lucro >= 0 ? 'text-green-400' : 'text-red-400'}>
-                        {formatMoney(lucro)}
+                       R$ {formatMoney(lucro)}
                       </span>
                     </div>
                   </>
@@ -126,11 +126,11 @@ const Investimentos = ({ game }) => {
                       <div className="space-y-2 text-sm">
                         <div className="flex justify-between">
                           <span className="text-gray-400">Preço unitário:</span>
-                          <span className="text-white">{formatMoney(precoAtual)}</span>
+                          <span className="text-white">R$ {formatMoney(precoAtual)}</span>
                         </div>
                         <div className="flex justify-between font-bold">
                           <span className="text-gray-400">Total:</span>
-                          <span className="text-green-400">{formatMoney(precoAtual * quantidade)}</span>
+                          <span className="text-green-400">R$ {formatMoney(precoAtual * quantidade)}</span>
                         </div>
                       </div>
                       <Button

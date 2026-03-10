@@ -130,25 +130,25 @@ const Banco = ({ game }) => {
           <div>
             <div className="text-sm text-gray-400">Em 1 minuto</div>
             <div className="text-lg font-bold text-green-400">
-              {formatMoney(calcularJurosProjetados(60))}
+             R$ {formatMoney(calcularJurosProjetados(60))}
             </div>
           </div>
           <div>
             <div className="text-sm text-gray-400">Em 5 minutos</div>
             <div className="text-lg font-bold text-green-400">
-              {formatMoney(calcularJurosProjetados(300))}
+             R$ {formatMoney(calcularJurosProjetados(300))}
             </div>
           </div>
           <div>
             <div className="text-sm text-gray-400">Em 1 hora</div>
             <div className="text-lg font-bold text-green-400">
-              {formatMoney(calcularJurosProjetados(3600))}
+             R$ {formatMoney(calcularJurosProjetados(3600))}
             </div>
           </div>
           <div>
             <div className="text-sm text-gray-400">Em 1 dia</div>
             <div className="text-lg font-bold text-green-400">
-              {formatMoney(calcularJurosProjetados(86400))}
+             R$ {formatMoney(calcularJurosProjetados(86400))}
             </div>
           </div>
         </div>
