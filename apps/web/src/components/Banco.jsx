@@ -7,6 +7,7 @@ const Banco = ({ game }) => {
   const [valorDeposito, setValorDeposito] = useState('');
   const [valorSaque, setValorSaque] = useState('');
 
+  
   const handleDepositar = () => {
     const valor = parseFloat(valorDeposito);
     if (valor > 0) {
@@ -36,7 +37,7 @@ const Banco = ({ game }) => {
           <Landmark className="w-8 h-8 text-emerald-400" />
           <div>
             <h3 className="text-lg font-bold text-white">Saldo no Banco</h3>
-            <p className="text-2xl font-bold text-emerald-400">{formatMoney(game.banco.saldo)}</p>
+            <p className="text-2xl font-bold text-emerald-400">R$ {formatMoney(game.banco.saldo)}</p>
           </div>
         </div>
         <div className="text-sm text-gray-400">

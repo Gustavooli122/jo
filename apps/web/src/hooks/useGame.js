@@ -38,7 +38,7 @@ export const useGame = () => {
     vendasMercado: 0
   });
 
-  const nivel = Math.floor(dinheiro / 10000) + 1;
+  const nivel = Math.min(500, Math.floor(dinheiro / 10000) + 1);
 
   // Initialize stock prices
   useEffect(() => {
@@ -299,6 +299,7 @@ export const useGame = () => {
     conquistasData.forEach(conquista => {
       if (!conquistas[conquista.id] && conquista.condicao(stats)) {
         setConquistas(prev => ({ ...prev, [conquista.id]: true }));
+        setDinheiro((prev) => conquista.ganho + prev)
         toast({
           title: '🏆 Conquista Desbloqueada!',
           description: conquista.nome,

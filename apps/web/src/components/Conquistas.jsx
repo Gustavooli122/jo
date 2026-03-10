@@ -52,9 +52,8 @@ const Conquistas = ({ game }) => {
                     {conquista.nome}
                   </h3>
                   <p className="text-xs text-gray-400 mt-1">{conquista.descricao}</p>
-                  {desbloqueada && (
-                    <div className="mt-2 text-xs text-green-400">✓ Desbloqueada</div>
-                  )}
+                  {desbloqueada && (<div className="mt-2 text-xs text-green-400">✓ Desbloqueada</div>
+                  )}{!desbloqueada && (<p className='text-md font-bold text-green-400'>Ganho: R$ {conquista.ganho}</p>)} 
                 </div>
               </div>
             </motion.div>
