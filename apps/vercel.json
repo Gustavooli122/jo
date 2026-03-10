@@ -1,0 +1,4 @@
+{
+  "buildCommand": "cd business-tycoon/apps/web && npm install && npm run build",
+  "outputDirectory": "business-tycoon/apps/web/dist"
+}
