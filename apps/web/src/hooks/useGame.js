@@ -11,6 +11,8 @@ export const useGame = () => {
   const { toast } = useToast();
   
   const [dinheiro, setDinheiro] = useState(500);
+  const [ouro, setOuro] = useState(0);
+  const [diamantes, setDiamantes] = useState(0);
   const [inventario, setInventario] = useState({});
   const [empresas, setEmpresas] = useState({});
   const [upgrades, setUpgrades] = useState({});
@@ -55,6 +57,8 @@ export const useGame = () => {
     if (savedGame) {
       try {
         const data = JSON.parse(savedGame);
+        setOuro(data.ouro || 0);
+        setDiamantes(data.diamantes || 0);
         setDinheiro(data.dinheiro || 500);
         setInventario(data.inventario || {});
         setEmpresas(data.empresas || {});
@@ -84,10 +88,65 @@ export const useGame = () => {
     }
   }, []);
 
+   const comprarOuro = useCallback(() => {
+ 
+  
+  if (nivel < 50) {
+    toast({
+      title: "❌ Nível insuficiente",
+      description: "Você precisa ser nível 50"
+    });
+    return;
+  }
+
+  const custo = 10000000;
+
+  if (dinheiro >= custo) {
+    setDinheiro(prev => prev - custo);
+    setOuro(prev => prev + 1);
+
+    toast({
+      title: "💛 Ouro comprado!",
+      description: "+1 ouro"
+    });
+
+  } else {
+    toast({
+      title: "❌ Dinheiro insuficiente"
+    });
+  }
+
+}, [dinheiro, nivel, toast]);
+
+  const comprarDiamante = useCallback(() => {
+   console.log("diamante")
+  const custo = 90;
+
+  if (ouro >= custo) {
+
+    setOuro(prev => prev - custo);
+    setDiamantes(prev => prev + 1);
+
+    toast({
+      title: "💎 Diamante comprado!",
+      description: "+1 diamante"
+    });
+
+  } else {
+
+    toast({
+      title: "❌ Ouro insuficiente"
+    });
+
+  }
+
+}, [ouro, toast]);
   // Auto-save every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       const gameData = {
+        ouro,
+        diamantes,
         dinheiro,
         inventario,
         empresas,
@@ -105,7 +164,7 @@ export const useGame = () => {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [dinheiro, inventario, empresas, upgrades, funcionarios, prestige, banco, investimentos, mercado, conquistas, rendaPassiva, estatisticas]);
+  }, [dinheiro,diamantes,ouro, inventario, empresas, upgrades, funcionarios, prestige, banco, investimentos, mercado, conquistas, rendaPassiva, estatisticas]);
 
   // Calculate total multiplier
   const calcularMultiplicador = useCallback(() => {
@@ -520,7 +579,8 @@ export const useGame = () => {
       });
       return;
     }
-
+    setDiamantes(0);
+    setOuro(0)
     setDinheiro(500);
     setInventario({});
     setEmpresas({});
@@ -637,6 +697,7 @@ export const useGame = () => {
     });
   }, [investimentos, precosAcoes, toast]);
 
+
   const apostarCassino = useCallback((valor, tipo) => {
     if (dinheiro < valor) {
       toast({
@@ -686,6 +747,8 @@ export const useGame = () => {
 
   return {
     dinheiro,
+    ouro,
+    diamantes,
     nivel,
     inventario,
     empresas,
@@ -701,6 +764,8 @@ export const useGame = () => {
     precosAcoes,
     rendaPassiva,
     estatisticas,
+    comprarOuro,
+    comprarDiamante,
     comprarProduto,
     venderProduto,
     colocarNoMercado,
