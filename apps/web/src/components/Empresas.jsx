@@ -88,7 +88,7 @@ const [valorAtual, setValorAtual]=useState("")
               <Button
                 onClick={() => game.comprarEmpresa(empresa.id)}
                 className="w-full mt-4"
-                disabled={game.dinheiro < custoAtual || game.ouro < custoAtual || game.diamante < custoAtual}
+                disabled={game.dinheiro < custoAtual && game.ouro < custoAtual && game.diamante < custoAtual}
               >
                 Comprar
               </Button>
