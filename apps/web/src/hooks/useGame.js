@@ -10,9 +10,9 @@ import { useToast } from '../hooks/use-toast';
 export const useGame = () => {
   const { toast } = useToast();
   
-  const [dinheiro, setDinheiro] = useState(500);
-  const [ouro, setOuro] = useState(0);
-  const [diamantes, setDiamantes] = useState(0);
+  const [dinheiro, setDinheiro] = useState(5000000);
+  const [ouro, setOuro] = useState(2000);
+  const [diamantes, setDiamantes] = useState(10000);
   const [inventario, setInventario] = useState({});
   const [empresas, setEmpresas] = useState({});
   const [upgrades, setUpgrades] = useState({});
@@ -88,58 +88,30 @@ export const useGame = () => {
     }
   }, []);
 
-   const comprarOuro = useCallback(() => {
- 
-  
+  const comprarOuro = useCallback((quantidade = 1) => {
+  const custo = 10000000 * quantidade;
   if (nivel < 50) {
-    toast({
-      title: "❌ Nível insuficiente",
-      description: "Você precisa ser nível 50"
-    });
+    toast({ title: "❌ Nível insuficiente", description: "Você precisa ser nível 50" });
     return;
   }
-
-  const custo = 10000000;
-
   if (dinheiro >= custo) {
     setDinheiro(prev => prev - custo);
-    setOuro(prev => prev + 1);
-
-    toast({
-      title: "💛 Ouro comprado!",
-      description: "+1 ouro"
-    });
-
+    setOuro(prev => prev + quantidade);
+    toast({ title: "💛 Ouro comprado!", description: `+${quantidade} ouro(s)` });
   } else {
-    toast({
-      title: "❌ Dinheiro insuficiente"
-    });
+    toast({ title: "❌ Dinheiro insuficiente" });
   }
-
 }, [dinheiro, nivel, toast]);
 
-  const comprarDiamante = useCallback(() => {
-   console.log("diamante")
-  const custo = 90;
-
+const comprarDiamante = useCallback((quantidade = 1) => {
+  const custo = 90 * quantidade;
   if (ouro >= custo) {
-
     setOuro(prev => prev - custo);
-    setDiamantes(prev => prev + 1);
-
-    toast({
-      title: "💎 Diamante comprado!",
-      description: "+1 diamante"
-    });
-
+    setDiamantes(prev => prev + quantidade);
+    toast({ title: "💎 Diamante comprado!", description: `+${quantidade} diamante(s)` });
   } else {
-
-    toast({
-      title: "❌ Ouro insuficiente"
-    });
-
+    toast({ title: "❌ Ouro insuficiente" });
   }
-
 }, [ouro, toast]);
   // Auto-save every 5 seconds
   useEffect(() => {
@@ -475,11 +447,50 @@ export const useGame = () => {
   const comprarEmpresa = useCallback((id) => {
     const empresa = empresasData.find(e => e.id === id);
     if (!empresa) return;
-
+    
     const quantidade = empresas[id] || 0;
     const custo = empresa.custo * Math.pow(1.15, quantidade);
-
-    if (dinheiro >= custo) {
+    if(empresa.tipoCusto === "ouro"){
+      if (ouro >= custo) {
+      setOuro(prev => prev - custo);
+      setEmpresas(prev => ({
+        ...prev,
+        [id]: quantidade + 1
+      }));
+      setEstatisticas(prev => ({ ...prev, totalEmpresas: prev.totalEmpresas + 1 }));
+      
+      toast({
+        title: '🏢 Empresa comprada!',
+        description: empresa.nome,
+      });
+    } else {
+      toast({
+        title: '❌ Ouro insuficiente!',
+        variant: 'destructive'
+      });
+    }
+    }
+   else if(empresa.tipoCusto === "diamante"){
+       if (diamantes >= custo) {
+      setDiamantes(prev => prev - custo);
+      setEmpresas(prev => ({
+        ...prev,
+        [id]: quantidade + 1
+      }));
+      setEstatisticas(prev => ({ ...prev, totalEmpresas: prev.totalEmpresas + 1 }));
+      
+      toast({
+        title: '🏢 Empresa comprada!',
+        description: empresa.nome,
+      });
+    } else {
+      toast({
+        title: '❌ Diamantes insuficiente!',
+        variant: 'destructive'
+      });
+    }
+    }
+    else if (dinheiro >= custo) {
       setDinheiro(prev => prev - custo);
       setEmpresas(prev => ({
         ...prev,
@@ -497,7 +508,7 @@ export const useGame = () => {
         variant: 'destructive'
       });
     }
-  }, [dinheiro, empresas, toast]);
+  }, [dinheiro,ouro,diamantes, empresas, toast]);
 
   const comprarUpgrade = useCallback((id) => {
     const upgrade = upgradesData.find(u => u.id === id);
@@ -570,39 +581,48 @@ export const useGame = () => {
     }
   }, [dinheiro, rendaPassiva, toast]);
 
-  const fazerPrestige = useCallback(() => {
-    if (dinheiro < 1000000000) {
-      toast({
-        title: '❌ Requisito não atendido!',
-        description: 'Você precisa de R$ 1B para fazer prestige.',
-        variant: 'destructive'
-      });
-      return;
-    }
-    setDiamantes(0);
-    setOuro(0)
-    setDinheiro(500);
-    setInventario({});
-    setEmpresas({});
-    setMercado({});
-    setRendaPassiva({});
-    setBanco({ saldo: 0 });
-    setPrestige(prev => ({
-      nivel: prev.nivel + 1,
-      multiplicador: 1.0 + ((prev.nivel + 1) * 0.5)
-    }));
-    setEstatisticas(prev => ({ 
-      ...prev, 
-      prestigeNivel: prev.prestigeNivel + 1,
-      totalGanho: 0,
-      totalVendido: 0
-    }));
-
+ const fazerPrestige = useCallback(() => {
+  if (dinheiro < 1000000000) {
     toast({
-      title: '🌟 Prestige realizado!',
-      description: `Nível ${prestige.nivel + 1} - Multiplicador: ${(1.0 + ((prestige.nivel + 1) * 0.5)).toFixed(1)}x`,
+      title: '❌ Requisito não atendido!',
+      description: 'Você precisa de R$ 1B para fazer prestige.',
+      variant: 'destructive'
     });
-  }, [dinheiro, prestige, toast]);
+    return;
+  }
+
+  const novoPrestige = {
+    nivel: prestige.nivel + 1,
+    multiplicador: 1.0 + ((prestige.nivel + 1) * 0.5)
+  };
+
+  // Reset do jogo
+  setDiamantes(0);
+  setOuro(0);
+  setDinheiro(500);
+  setUpgrades({});
+  setInventario({});
+  setEmpresas({});
+  setMercado({});
+  setRendaPassiva({});
+  setBanco({ saldo: 0 });
+
+  // Atualiza prestige
+  setPrestige(novoPrestige);
+
+  // Atualiza estatísticas
+  setEstatisticas(prev => ({
+    ...prev,
+    prestigeNivel: prev.prestigeNivel + 1,
+    totalGanho: 0,
+    totalVendido: 0
+  }));
+
+  toast({
+    title: '🌟 Prestige realizado!',
+    description: `Nível ${novoPrestige.nivel} - Multiplicador: ${novoPrestige.multiplicador.toFixed(1)}x`,
+  });
+}, [dinheiro, prestige, toast]);
 
   const depositarBanco = useCallback((valor) => {
     if (dinheiro >= valor) {

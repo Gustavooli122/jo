@@ -58,14 +58,14 @@ const TopBar = ({ game }) => {
             <Coins className="w-5 h-5 text-yellow-400" />
             <div>
               <div className="text-xs text-gray-400">Ouro:</div>
-              <div className="text-lg font-bold text-yellow-400">{ouro}</div>
+              <div className="text-lg font-bold text-yellow-400">{formatMoney(ouro)}</div>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <Gem className="w-5 h-5 text-purple-400" />
             <div>
               <div className="text-xs text-gray-400">Diamantes:</div>
-              <div className="text-lg font-bold text-purple-400">{diamantes}</div>
+              <div className="text-lg font-bold text-purple-400">{formatMoney(diamantes)}</div>
             </div>
           </div>
           {prestige.nivel > 0 && (

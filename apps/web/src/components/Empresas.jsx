@@ -1,18 +1,22 @@
-import React from 'react';
-import { empresas as empresasData } from '../data/empresas.js';
+import React, { useState } from 'react';
+import { empresas, empresas as empresasData } from '../data/empresas.js';
 import { formatMoney } from '../utils/formatters.js';
 import { Building2, TrendingUp } from 'lucide-react';
 import { Button } from './ui/button';
 import { motion } from 'framer-motion';
-
+import { Gem } from 'lucide-react';
+import { Coins } from 'lucide-react';
 const Empresas = ({ game }) => {
+
+const [valorAtual, setValorAtual]=useState("")
+
   const getTierColor = (custo) => {
     if (custo < 100000) return 'from-blue-500/20 to-blue-600/20 border-blue-500/30';
     if (custo < 1000000) return 'from-purple-500/20 to-purple-600/20 border-purple-500/30';
     if (custo < 50000000) return 'from-pink-500/20 to-pink-600/20 border-pink-500/30';
     return 'from-yellow-500/20 to-yellow-600/20 border-yellow-500/30';
   };
-
+  
   const calcularRendaTotal = () => {
     let total = 0;
     Object.keys(game.empresas).forEach(id => {
@@ -24,6 +28,7 @@ const Empresas = ({ game }) => {
     return total * game.calcularMultiplicador();
   };
 
+ 
   return (
     <div className="space-y-6">
       <div className="bg-gradient-to-r from-green-900/30 to-emerald-900/30 border border-green-500/30 rounded-lg p-6">
@@ -41,7 +46,8 @@ const Empresas = ({ game }) => {
           const quantidade = game.empresas[empresa.id] || 0;
           const custoAtual = empresa.custo * Math.pow(1.15, quantidade);
           const rendaAtual = empresa.renda * quantidade * game.calcularMultiplicador();
-
+          const valorTipo = String(empresa.tipoCusto) 
+  
           return (
             <motion.div
               key={empresa.id}
@@ -59,7 +65,9 @@ const Empresas = ({ game }) => {
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
                   <span className="text-gray-400">Custo:</span>
-                  <span className="text-yellow-400 font-bold">R$ {formatMoney(custoAtual)}</span>
+                 {valorTipo === "dinheiro" && ( <span className="text-green-400 font-bold">R$ {formatMoney(custoAtual)}</span>)}
+                 {valorTipo === "ouro" && ( <span className="text-yellow-400 font-bold flex items-center gap-2"><Coins className='w-5'/> {formatMoney(custoAtual)}</span>)}
+                 {valorTipo === "diamante" && ( <span className="text-purple-500 font-bold flex items-center gap-2"><Gem className='w-5'/> {formatMoney(custoAtual)}</span>)}
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-400">Renda:</span>
@@ -80,7 +88,7 @@ const Empresas = ({ game }) => {
               <Button
                 onClick={() => game.comprarEmpresa(empresa.id)}
                 className="w-full mt-4"
-                disabled={game.dinheiro < custoAtual}
+                disabled={game.dinheiro < custoAtual || game.ouro < custoAtual || game.diamante < custoAtual}
               >
                 Comprar
               </Button>

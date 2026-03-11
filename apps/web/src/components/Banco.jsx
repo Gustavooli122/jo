@@ -7,9 +7,11 @@ import { Coins } from 'lucide-react';
 const Banco = ({ game }) => {
   const [valorDeposito, setValorDeposito] = useState('');
   const [valorSaque, setValorSaque] = useState('');
+  const [quantidadeDiamante, setQuantidadeDiamante] = useState("");
+const [quantidadeOuro, setQuantidadeOuro] = useState("");
 
-    const comprarDiamond = ()=> game.comprarDiamante();
-  const comprarGold = () => game.comprarOuro();
+    const comprarDiamond = ()=> game.comprarDiamante(quantidadeDiamante);
+  const comprarGold = () => game.comprarOuro(quantidadeOuro);
 
   const handleDepositar = () => {
     const valor = parseFloat(valorDeposito);
@@ -157,17 +159,29 @@ const Banco = ({ game }) => {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
   {/* Card Diamantes */}
-  <div className="bg-gray-800/50 backdrop-blur border border-gray-700 rounded-lg p-6 flex flex-col justify-between">
+  <div className="bg-gray-800/50  backdrop-blur border border-gray-700 rounded-lg p-6 flex flex-col justify-between">
     <div className="mb-4">
       <h3 className="text-white font-bold mb-2 flex items-center gap-2">
         <Coins className="w-6 h-6 text-blue-400" />
         Comprar Diamantes
       </h3>
-      <p className="text-gray-400">Valor: <span className=" font-semibold text-yellow-400">100 Ouro</span></p>
-      <p className="text-gray-400 mt-1">Possui: <span className="text-purple-400 font-semibold">{game.diamantes}</span></p>
+      <p className="text-gray-400 mb-2">Valor por unidade: <span className="text-white font-semibold">100 Ouro</span></p>
+      <p className="text-gray-400 mb-2">Possui: <span className="text-white font-semibold">{formatMoney(game.diamantes)}</span></p>
+      <Input
+        type="number"
+        min={1}
+        value={quantidadeDiamante}
+        onChange={(e) => setQuantidadeDiamante(parseInt(e.target.value) || 1)}
+        className="bg-gray-700 border-gray-600 text-white w-full mb-2"
+        placeholder="Quantidade"
+      />
     </div>
-    <Button onClick={comprarDiamond} className="w-full">
+    <Button 
+      onClick={() => comprarDiamond(quantidadeDiamante)} 
+      className="w-full"
+    >
       Comprar
     </Button>
   </div>
@@ -179,15 +193,27 @@ const Banco = ({ game }) => {
         <Coins className="w-6 h-6 text-yellow-400" />
         Comprar Ouro
       </h3>
-      <p className="text-gray-400">Valor: <span className=" font-semibold text-green-500">R$ 10.000.000</span></p>
-      <p className="text-gray-400 mt-1">Possui: <span className="text-yellow-400 font-semibold">{game.ouro}</span></p>
+      <p className="text-gray-400 mb-2">Valor por unidade: <span className="text-white font-semibold">R$ 10.000.000</span></p>
+      <p className="text-gray-400 mb-2">Possui: <span className="text-white font-semibold">{formatMoney(game.ouro) }</span></p>
+      <Input
+        type="number"
+        min={1}
+        value={quantidadeOuro}
+        onChange={(e) => setQuantidadeOuro(parseInt(e.target.value) || 1)}
+        className="bg-gray-700 border-gray-600 text-white w-full mb-2"
+        placeholder="Quantidade"
+      />
     </div>
-    <Button onClick={comprarGold} className="w-full">
+    <Button 
+      onClick={() => comprarGold(quantidadeOuro)} 
+      className="w-full"
+    >
       Comprar
     </Button>
   </div>
 </div>
-    </div>
+</div>
+  
   );
 };
 

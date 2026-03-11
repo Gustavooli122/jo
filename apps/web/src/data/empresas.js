@@ -4,21 +4,24 @@ export const empresas = [
     nome: 'Startup',
     custo: 10000,
     renda: 500,
+    tipoCusto:"dinheiro",
     intervalo: 5000,
     descricao: 'Uma pequena startup com grande potencial'
   },
   {
     id: 'software',
     nome: 'Software',
-    custo: 70000,
+    custo: 10,
     renda: 1000,
+    tipoCusto:"ouro",
     intervalo: 5000,
     descricao: 'Empresa de desenvolvimento de software'
   },
   {
     id: 'fabrica',
     nome: 'Fábrica',
-    custo: 500000,
+    custo: 500,
+    tipoCusto:"ouro",
     renda: 15000,
     intervalo: 5000,
     descricao: 'Fábrica de produção em massa'
@@ -26,7 +29,8 @@ export const empresas = [
   {
     id: 'megacorp',
     nome: 'Mega Corporação',
-    custo: 5000000,
+    custo: 1000,
+    tipoCusto:"ouro",
     renda: 50000,
     intervalo: 5000,
     descricao: 'Grande corporação multinacional'
@@ -34,7 +38,8 @@ export const empresas = [
   {
     id: 'banco',
     nome: 'Banco',
-    custo: 10000000,
+    custo: 5,
+    tipoCusto:"diamante",
     renda: 100000,
     intervalo: 5000,
     descricao: 'Instituição financeira de grande porte'
@@ -42,7 +47,8 @@ export const empresas = [
   {
     id: 'espacial',
     nome: 'Empresa Espacial',
-    custo: 50000000,
+    custo: 20,
+    tipoCusto:"diamante",
     renda: 300000,
     intervalo: 5000,
     descricao: 'Empresa de exploração espacial'
@@ -50,7 +56,8 @@ export const empresas = [
   {
     id: 'lunar',
     nome: 'Colônia Lunar',
-    custo: 100000000,
+    tipoCusto:"diamante",
+    custo: 50,
     renda: 1000000,
     intervalo: 5000,
     descricao: 'Colônia autossustentável na Lua'
@@ -58,7 +65,8 @@ export const empresas = [
   {
     id: 'imperio',
     nome: 'Império Intergaláctico',
-    custo: 5000000000,
+    tipoCusto:"diamante",
+    custo: 500,
     renda: 10000000,
     intervalo: 5000,
     descricao: 'Império que domina galáxias inteiras'

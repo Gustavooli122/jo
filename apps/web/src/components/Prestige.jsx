@@ -68,6 +68,7 @@ const Prestige = ({ game }) => {
               <li>• Dinheiro (volta para R$ 500)</li>
               <li>• Inventário</li>
               <li>• Empresas</li>
+              <li>• Upgrades</li>
               <li>• Mercado</li>
               <li>• Geradores de Renda Passiva</li>
               <li>• Saldo do Banco</li>
@@ -79,7 +80,6 @@ const Prestige = ({ game }) => {
           <div>
             <h3 className="font-bold text-green-400 mb-2">O que será mantido:</h3>
             <ul className="text-sm text-gray-400 space-y-1">
-              <li>• Upgrades</li>
               <li>• Funcionários</li>
               <li>• Conquistas</li>
               <li>• Investimentos</li>
