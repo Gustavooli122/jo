@@ -10,9 +10,9 @@ import { useToast } from '../hooks/use-toast';
 export const useGame = () => {
   const { toast } = useToast();
   
-  const [dinheiro, setDinheiro] = useState(5000000);
-  const [ouro, setOuro] = useState(2000);
-  const [diamantes, setDiamantes] = useState(10000);
+  const [dinheiro, setDinheiro] = useState(500);
+  const [ouro, setOuro] = useState(0);
+  const [diamantes, setDiamantes] = useState(0);
   const [inventario, setInventario] = useState({});
   const [empresas, setEmpresas] = useState({});
   const [upgrades, setUpgrades] = useState({});
