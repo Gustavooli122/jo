@@ -4,7 +4,8 @@ import { formatMoney } from '../utils/formatters.js';
 import { Zap, Check } from 'lucide-react';
 import { Button } from './ui/button.jsx';
 import { motion } from 'framer-motion';
-
+import { Coins } from 'lucide-react';
+import { Gem } from 'lucide-react';
 const Upgrades = ({ game }) => {
   const multiplicadorTotal = game.calcularMultiplicador();
 
@@ -23,7 +24,7 @@ const Upgrades = ({ game }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {upgradesData.map((upgrade) => {
           const possuido = game.upgrades[upgrade.id] || false;
-
+          const valorTipo = String(upgrade.tipoCusto) 
           return (
             <motion.div
               key={upgrade.id}
@@ -38,7 +39,7 @@ const Upgrades = ({ game }) => {
                 {possuido ? (
                   <Check className="w-6 h-6 text-green-400 flex-shrink-0" />
                 ) : (
-                  <Zap className="w-6 h-6 text-purple-400 flex-shrink-0" />
+                  <Zap className="w-6 h-6 text-orange-500 flex-shrink-0" />
                 )}
                 <div className="flex-1">
                   <h3 className="font-bold text-white">{upgrade.nome}</h3>
@@ -49,12 +50,14 @@ const Upgrades = ({ game }) => {
               <div className="space-y-2 text-sm mb-4">
                 <div className="flex justify-between">
                   <span className="text-gray-400">Multiplicador:</span>
-                  <span className="text-purple-400 font-bold">x{upgrade.multiplicador}</span>
+                  <span className="text-blue-400 font-bold">x{upgrade.multiplicador}</span>
                 </div>
                 {!possuido && (
                   <div className="flex justify-between">
                     <span className="text-gray-400">Custo:</span>
-                    <span className="text-yellow-400 font-bold">R$ {formatMoney(upgrade.custo)}</span>
+                   {valorTipo === "dinheiro" && ( <span className="text-green-400 font-bold">R$ {formatMoney(upgrade.custo)}</span>)}
+                 {valorTipo === "ouro" && ( <span className="text-yellow-400 font-bold flex items-center gap-2"><Coins className='w-5'/> {formatMoney(upgrade.custo)}</span>)}
+                 {valorTipo === "diamante" && ( <span className="text-purple-500 font-bold flex items-center gap-2"><Gem className='w-5'/> {formatMoney(upgrade.custo)}</span>)}
                   </div>
                 )}
               </div>

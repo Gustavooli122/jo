@@ -513,8 +513,7 @@ const comprarDiamante = useCallback((quantidade = 1) => {
   const comprarUpgrade = useCallback((id) => {
     const upgrade = upgradesData.find(u => u.id === id);
     if (!upgrade || upgrades[id]) return;
-
-    if (dinheiro >= upgrade.custo) {
+     if(upgrade.tipoCusto === "dinheiro"){ if (dinheiro >= upgrade.custo) {
       setDinheiro(prev => prev - upgrade.custo);
       setUpgrades(prev => ({ ...prev, [id]: true }));
       setEstatisticas(prev => ({ ...prev, totalUpgrades: prev.totalUpgrades + 1 }));
@@ -528,8 +527,40 @@ const comprarDiamante = useCallback((quantidade = 1) => {
         title: '❌ Dinheiro insuficiente!',
         variant: 'destructive'
       });
+    }}else if(upgrade.tipoCusto === "ouro"){
+       if (ouro >= upgrade.custo) {
+      setOuro(prev => prev - upgrade.custo);
+      setUpgrades(prev => ({ ...prev, [id]: true }));
+      setEstatisticas(prev => ({ ...prev, totalUpgrades: prev.totalUpgrades + 1 }));
+      
+      toast({
+        title: '⚡ Upgrade comprado!',
+        description: upgrade.nome,
+      });
+    } else {
+      toast({
+        title: '❌ Ouro insuficiente!',
+        variant: 'destructive'
+      });
+    } 
     }
-  }, [dinheiro, upgrades, toast]);
+   else if(upgrade.tipoCusto === "diamante"){
+       if (diamantes >= upgrade.custo) {
+      setDiamantes(prev => prev - upgrade.custo);
+      setUpgrades(prev => ({ ...prev, [id]: true }));
+      setEstatisticas(prev => ({ ...prev, totalUpgrades: prev.totalUpgrades + 1 }));
+      
+      toast({
+        title: '⚡ Upgrade comprado!',
+        description: upgrade.nome,
+      });
+    } else {
+      toast({
+        title: '❌ Diamante insuficiente!',
+        variant: 'destructive'
+      });
+    }
+  }}, [dinheiro,ouro,diamantes, upgrades, toast]);
 
   const comprarFuncionario = useCallback((id) => {
     const funcionario = funcionariosData.find(f => f.id === id);
