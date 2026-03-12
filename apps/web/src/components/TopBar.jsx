@@ -6,7 +6,7 @@ import { Button } from './ui/button.jsx';
 import { Coins } from 'lucide-react';
 import { Gem } from 'lucide-react';
 const TopBar = ({ game }) => {
-  const { dinheiro,ouro ,diamantes, nivel, eventoAtivo, prestige } = game;
+  const { dinheiro,ouro,diamantes, nivel, eventoAtivo, prestige } = game;
 
   const handleSave = () => {
     const gameData = {
@@ -54,20 +54,15 @@ const TopBar = ({ game }) => {
               <div className=" font-bold text-cyan-600">{nivel}</div>
             </div>
           </div>
- <motion.div 
-            key={ouro}
-            initial={{ scale: 1 }}
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{ duration: 0.3 }}
-            className="flex items-center gap-2"
-          >
-          
-            <Coins className="w-5 h-5 text-yellow-400"/>
+ 
+          <div className="flex items-center text-sm lg:text-lg xl:text-xl  gap-2">
+            <Coins className="w-5 h-5 text-yellow-400" />
             <div>
               <div className="text-gray-400">Ouro:</div>
               <div className="font-bold text-yellow-400">{formatMoney(ouro)}</div>
+            </div>
           </div>
-          </motion.div>
+         
             <motion.div
             key={diamantes}
             initial={{ scale: 1 }}

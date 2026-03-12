@@ -101,6 +101,7 @@ export const useGame = () => {
   } else {
     toast({ title: "❌ Dinheiro insuficiente" });
   }
+   console.log("erro")
 }, [dinheiro, nivel, toast]);
 
 const comprarDiamante = useCallback((quantidade = 1) => {
