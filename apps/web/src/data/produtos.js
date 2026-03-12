@@ -1,5 +1,5 @@
 export const produtos = [
-  { id: 1, nome: 'Mochila', preco: 50 },
+  { id: 1, nome: 'Mochila', preco: 50},
   { id: 2, nome: 'Caneta', preco: 75 },
   { id: 3, nome: 'Caderno', preco: 100 },
   { id: 4, nome: 'Livro', preco: 150 },

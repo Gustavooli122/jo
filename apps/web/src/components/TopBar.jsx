@@ -32,7 +32,7 @@ const TopBar = ({ game }) => {
   return (
     <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 border-b border-gray-700 px-4 py-3 sticky top-0 z-50 backdrop-blur-sm">
       <div className="container mx-auto flex flex-wrap items-center justify-between gap-4">
-        <div className="flex flex-col md:flex-row md:items-center gap-6">
+        <div className="flex  text-sm lg:text-lg xl:text-xl  flex-col md:flex-row md:items-center gap-6">
           <motion.div
             key={dinheiro}
             initial={{ scale: 1 }}
@@ -42,32 +42,50 @@ const TopBar = ({ game }) => {
           >
             <TrendingUp className="w-6 h-6 text-green-400" />
             <div>
-              <div className="text-xs text-gray-400">Dinheiro</div>
-              <div className="text-xl font-bold text-green-400">R$ {formatMoney(dinheiro)}</div>
+              <div className=" text-gray-400">Dinheiro</div>
+              <div className=" font-bold text-green-400">R$ {formatMoney(dinheiro)}</div>
             </div>
-          </motion.div>
-
-          <div className="flex items-center gap-2">
+          </motion.div> 
+          <div className="flex text-sm lg:text-lg xl:text-xl items-center gap-2">
+           
             <Zap className="w-5 h-5 text-cyan-600" />
             <div>
-              <div className="text-xs text-gray-400">Nível</div>
-              <div className="text-lg font-bold text-cyan-600">{nivel}</div>
+              <div className=" text-gray-400">Nível</div>
+              <div className=" font-bold text-cyan-600">{nivel}</div>
             </div>
           </div>
-           <div className="flex items-center gap-2">
+ <motion.div
+            key={ouro}
+            initial={{ scale: 1 }}
+            animate={{ scale: [1, 1.1, 1] }}
+            transition={{ duration: 0.3 }}
+            className="flex items-center gap-2"
+          >
+          <div className="flex items-center text-sm lg:text-lg xl:text-xl  gap-2">
             <Coins className="w-5 h-5 text-yellow-400" />
             <div>
-              <div className="text-xs text-gray-400">Ouro:</div>
-              <div className="text-lg font-bold text-yellow-400">{formatMoney(ouro)}</div>
+              <div className="text-gray-400">Ouro:</div>
+              <div className="font-bold text-yellow-400">{formatMoney(ouro)}</div>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          </motion.div>
+            <motion.div
+            key={diamantes}
+            initial={{ scale: 1 }}
+            animate={{ scale: [1, 1.1, 1] }}
+            transition={{ duration: 0.3 }}
+            className="flex items-center gap-2"
+          >
+ <div className="flex  text-sm lg:text-lg xl:text-xl  items-center gap-2">
             <Gem className="w-5 h-5 text-purple-400" />
             <div>
-              <div className="text-xs text-gray-400">Diamantes:</div>
-              <div className="text-lg font-bold text-purple-400">{formatMoney(diamantes)}</div>
+              <div className=" text-gray-400">Diamantes:</div>
+              <div className=" font-bold text-purple-400">{formatMoney(diamantes)}</div>
             </div>
           </div>
+          </motion.div>
+          
+         
           {prestige.nivel > 0 && (
             <div className="flex items-center gap-2 bg-purple-900/30 px-3 py-1 rounded-lg border border-purple-500/30">
               <div className="text-xs text-gray-400">Prestige</div>
