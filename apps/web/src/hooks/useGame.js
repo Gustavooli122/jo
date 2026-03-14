@@ -40,7 +40,7 @@ export const useGame = () => {
     vendasMercado: 0
   });
 
-  const nivel = Math.min(500, Math.floor(dinheiro / 10000) + 1);
+  const nivel = Math.min(999999, Math.floor(dinheiro / 10000) + 1);
 
   // Initialize stock prices
   useEffect(() => {
@@ -57,9 +57,9 @@ export const useGame = () => {
     if (savedGame) {
       try {
         const data = JSON.parse(savedGame);
-        setOuro(data.ouro || 0);
+        setOuro(data.ouro || 500);
         setDiamantes(data.diamantes || 0);
-        setDinheiro(data.dinheiro || 500);
+        setDinheiro(data.dinheiro || 0);
         setInventario(data.inventario || {});
         setEmpresas(data.empresas || {});
         setUpgrades(data.upgrades || {});
@@ -212,7 +212,7 @@ const comprarDiamante = useCallback((quantidade = 1) => {
   useEffect(() => {
     const interval = setInterval(() => {
       if (banco.saldo > 0) {
-        const juros = banco.saldo * 0.005;
+        const juros = banco.saldo * 0.05;
         setBanco(prev => ({ saldo: prev.saldo + juros }));
         setEstatisticas(prev => ({ ...prev, saldoBanco: banco.saldo + juros }));
       }

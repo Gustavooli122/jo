@@ -6,6 +6,7 @@ import { Button } from './ui/button.jsx';
 import { Input } from './ui/input.jsx';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog.jsx';
 
+
 const Loja = ({ game }) => {
   const [search, setSearch] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -43,7 +44,7 @@ const Loja = ({ game }) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {currentProducts.map((produto) => {
           const precoAjustado = produto.preco * game.prestige.multiplicador;
           const quantidadeInventario = game.inventario[produto.id] || 0;
@@ -53,9 +54,11 @@ const Loja = ({ game }) => {
               key={produto.id}
               className="bg-gray-800/50 backdrop-blur border border-gray-700 rounded-lg p-4 hover:border-blue-500/50 transition-all"
             >
+       
+          <img src={produto.img} className='rounded-md mb-3'/>
               <h3 className="font-bold text-white mb-2">{produto.nome}</h3>
               <div className="space-y-2">
-                <div className="text-green-400 font-bold">R$ {formatMoney(precoAjustado)}</div>
+                <div className="text-green-400 ">R$ {formatMoney(precoAjustado)}</div>
                 {quantidadeInventario > 0 && (
                   <div className="text-sm text-gray-400">Possui: {quantidadeInventario}</div>
                 )}

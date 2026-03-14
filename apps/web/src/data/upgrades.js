@@ -119,5 +119,13 @@ export const upgrades = [
     tipoCusto:"diamante",
     custo: 500000,
     descricao: 'Transcendência empresarial'
+  },
+   {
+    id: 'extraordinario',
+    nome: 'Extraordinario',
+    multiplicador: 99999.0,
+    tipoCusto:"diamante",
+    custo: 5000000000000000,
+    descricao: 'Ultra Transcendência empresarial'
   }
 ];
