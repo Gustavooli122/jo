@@ -40,7 +40,7 @@ export const useGame = () => {
     vendasMercado: 0
   });
 
-  const nivel = Math.min(999999, Math.floor(dinheiro / 10000) + 1);
+  const nivel = Math.min(10, Math.floor(dinheiro / 10000) + 1);
 
   // Initialize stock prices
   useEffect(() => {
@@ -59,7 +59,7 @@ export const useGame = () => {
         const data = JSON.parse(savedGame);
         setOuro(data.ouro || 500);
         setDiamantes(data.diamantes || 0);
-        setDinheiro(data.dinheiro || 0);
+        setDinheiro(data.dinheiro || 500);
         setInventario(data.inventario || {});
         setEmpresas(data.empresas || {});
         setUpgrades(data.upgrades || {});
